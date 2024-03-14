@@ -1,4 +1,5 @@
 import { Todo } from "../entities/Todo";
+import axios from "axios";
 
 const todos = [
   {
@@ -29,6 +30,7 @@ const todos = [
 ];
 
 
+
 export const fetchTodos = async (query = ""): Promise<Todo[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -39,11 +41,15 @@ export const fetchTodos = async (query = ""): Promise<Todo[]> => {
   );
 
 
+
   return [...filteredTodos];
 };
 
+/**
+ * Mock function that mimics adding a todo to a database.
+ */
 export const addTodo = async (todo: Pick<Todo, "title">): Promise<Todo> => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const newTodo = {
     id: todos.length + 1,
