@@ -8,10 +8,11 @@ interface TodoProps {
 
 export default function TodoCard({ todo }: TodoProps) {
   const [checked, setChecked] = useState(todo.completed);
-
+  console.log('todo name: ',todo)
   return (
     <div>
-      {todo.title}
+      <span>{todo.name}</span>
+      
       <input
         type="checkbox"
         checked={checked}

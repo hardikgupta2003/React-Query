@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import './index.css'
 import './App.css'
-import { addTodo, fetchTodos } from "./api";
+import { addTodo } from "./api";
 import TodoCard from "./components/TodoCard";
+import  {fetchTodos}  from "./api/fetchTodos";
 
 export default function Demo() {
   const queryClient = useQueryClient();
@@ -12,12 +13,12 @@ export default function Demo() {
   const [title, setTitle] = useState("");
 
   const { data: todos, isLoading } = useQuery({
-    queryKey: ["todos", { search }],
-    queryFn: () => fetchTodos(search),
+    queryKey: ["todos"],
+    queryFn:fetchTodos,
     staleTime: Infinity,
     cacheTime: 0,
   });
-  
+  console.log("todos:",todos)
 
   const { mutateAsync: addTodoMutation } = useMutation({
     mutationFn: addTodo,
@@ -29,7 +30,7 @@ export default function Demo() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
+  console.log("todos:",todos)
   return (
     <div className="container ">
        <h1>To Do App</h1>
